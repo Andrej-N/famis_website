@@ -17,7 +17,7 @@ export default function Footer() {
               alt="FAMIS Co. logo"
               width={36}
               height={36}
-              className="theme-logo opacity-40"
+              className="theme-logo opacity-60"
             />
           </a>
 
@@ -32,7 +32,7 @@ export default function Footer() {
                 key={link.href}
                 href={link.href}
                 className="text-sm transition-colors"
-                style={{ color: "var(--theme-fg-faint)" }}
+                style={{ color: "var(--theme-fg-subtle)" }}
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.color = "var(--theme-fg-muted)")
                 }
@@ -46,7 +46,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <p className="text-sm" style={{ color: "var(--theme-fg-faint)" }}>
+          <p className="text-sm" style={{ color: "var(--theme-fg-subtle)" }}>
             &copy; {new Date().getFullYear()} FAMIS Co.
           </p>
         </div>

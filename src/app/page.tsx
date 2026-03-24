@@ -5,6 +5,7 @@ import Products from "@/components/Products";
 import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import MarketingPlan from "@/components/MarketingPlan";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <MarketingPlan />
     </>
   );
 }
