@@ -1,8 +1,13 @@
+"use client";
+
 import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 py-12">
+    <footer
+      className="py-12"
+      style={{ borderTop: "1px solid var(--theme-nav-border)" }}
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
@@ -12,7 +17,7 @@ export default function Footer() {
               alt="FAMIS Co. logo"
               width={36}
               height={36}
-              className="invert brightness-200 opacity-40"
+              className="theme-logo opacity-40"
             />
           </a>
 
@@ -26,7 +31,14 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-white/30 text-sm hover:text-white/60 transition-colors"
+                className="text-sm transition-colors"
+                style={{ color: "var(--theme-fg-faint)" }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.color = "var(--theme-fg-muted)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = "var(--theme-fg-faint)")
+                }
               >
                 {link.label}
               </a>
@@ -34,7 +46,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <p className="text-white/20 text-sm">
+          <p className="text-sm" style={{ color: "var(--theme-fg-faint)" }}>
             &copy; {new Date().getFullYear()} FAMIS Co.
           </p>
         </div>

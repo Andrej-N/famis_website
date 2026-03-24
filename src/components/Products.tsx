@@ -61,14 +61,20 @@ function ProductDots({ color, count = 4 }: { color: string; count?: number }) {
 function ProductCard({ product, index }: { product: Product; index: number }) {
   return (
     <ScrollReveal delay={index * 80}>
-      <div className="group product-card bg-surface rounded-[var(--radius-lg)] overflow-hidden hover:bg-surface-hover">
+      <div
+        className="group product-card rounded-[var(--radius-lg)] overflow-hidden"
+        style={{ backgroundColor: "var(--theme-surface)" }}
+      >
         {/* Dot pattern visual */}
-        <div className="relative aspect-[4/3] bg-[#0d0d0d] flex items-center justify-center overflow-hidden">
+        <div
+          className="relative aspect-[4/3] flex items-center justify-center overflow-hidden"
+          style={{ backgroundColor: "var(--theme-surface-card)" }}
+        >
           {/* Accent glow on hover */}
           <div
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             style={{
-              background: `radial-gradient(circle at center, ${product.dots}08 0%, transparent 70%)`,
+              background: `radial-gradient(circle at center, ${product.dots}15 0%, transparent 70%)`,
             }}
           />
           <div className="grid grid-cols-5 gap-3 opacity-20 group-hover:opacity-35 transition-opacity duration-300">
@@ -77,7 +83,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 key={i}
                 className="w-4 h-4 rounded-full transition-transform duration-300 group-hover:scale-110"
                 style={{
-                  backgroundColor: i < 8 ? product.dots : "white",
+                  backgroundColor: i < 8 ? product.dots : "var(--theme-dot-color)",
                   opacity: i < 8 ? 0.8 : 0.15,
                 }}
               />
@@ -89,14 +95,25 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         <div className="p-5">
           <div className="flex items-center justify-between mb-2">
             <ProductDots color={product.dots} />
-            <span className="text-white/30 text-xs uppercase tracking-wider">
+            <span
+              className="text-xs uppercase tracking-wider"
+              style={{ color: "var(--theme-fg-faint)" }}
+            >
               {product.weight}
             </span>
           </div>
-          <h3 className="text-white font-semibold text-base uppercase tracking-wide">
+          <h3
+            className="font-semibold text-base uppercase tracking-wide"
+            style={{ color: "var(--theme-fg)" }}
+          >
             {product.name}
           </h3>
-          <p className="text-white/40 text-sm mt-1">{product.description}</p>
+          <p
+            className="text-sm mt-1"
+            style={{ color: "var(--theme-fg-subtle)" }}
+          >
+            {product.description}
+          </p>
         </div>
       </div>
     </ScrollReveal>
@@ -112,7 +129,11 @@ export default function Products() {
       : products.filter((p) => p.category === active);
 
   return (
-    <section id="proizvodi" className="py-28 lg:py-36 bg-[#070707]">
+    <section
+      id="proizvodi"
+      className="py-28 lg:py-36"
+      style={{ backgroundColor: "var(--theme-bg-alt)" }}
+    >
       {/* Section divider */}
       <div className="absolute left-0 right-0 section-divider" style={{ marginTop: "-112px" }} />
 
@@ -120,10 +141,16 @@ export default function Products() {
         {/* Header */}
         <ScrollReveal>
           <div className="mb-16">
-            <p className="text-white/40 text-sm uppercase tracking-[0.2em] mb-4">
+            <p
+              className="text-sm uppercase tracking-[0.2em] mb-4"
+              style={{ color: "var(--theme-fg-subtle)" }}
+            >
               Proizvodi
             </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tight">
+            <h2
+              className="text-3xl md:text-5xl font-bold uppercase tracking-tight"
+              style={{ color: "var(--theme-fg)" }}
+            >
               Naš asortiman
             </h2>
           </div>
@@ -139,12 +166,17 @@ export default function Products() {
                 className="cursor-pointer px-5 py-2.5 text-sm uppercase tracking-[0.1em] rounded-[var(--radius-md)] transition-all duration-200"
                 style={{
                   backgroundColor:
-                    active === cat.id ? "rgba(255,255,255,0.1)" : "transparent",
-                  color: active === cat.id ? "#ffffff" : "rgba(255,255,255,0.4)",
+                    active === cat.id
+                      ? "var(--theme-filter-active-bg)"
+                      : "transparent",
+                  color:
+                    active === cat.id
+                      ? "var(--theme-filter-active-fg)"
+                      : "var(--theme-filter-inactive-fg)",
                   border:
                     active === cat.id
-                      ? "1px solid rgba(255,255,255,0.2)"
-                      : "1px solid rgba(255,255,255,0.08)",
+                      ? "1px solid var(--theme-filter-active-border)"
+                      : "1px solid var(--theme-filter-inactive-border)",
                 }}
               >
                 <span className="flex items-center gap-2">

@@ -1,3 +1,5 @@
+"use client";
+
 import { ShieldCheck, Award, Leaf } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
@@ -32,10 +34,16 @@ export default function Certificates() {
         {/* Header */}
         <ScrollReveal>
           <div className="mb-16">
-            <p className="text-white/40 text-sm uppercase tracking-[0.2em] mb-4">
+            <p
+              className="text-sm uppercase tracking-[0.2em] mb-4"
+              style={{ color: "var(--theme-fg-subtle)" }}
+            >
               Sertifikati
             </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tight">
+            <h2
+              className="text-3xl md:text-5xl font-bold uppercase tracking-tight"
+              style={{ color: "var(--theme-fg)" }}
+            >
               Garancija kvaliteta
             </h2>
           </div>
@@ -47,12 +55,33 @@ export default function Certificates() {
             const Icon = cert.icon;
             return (
               <ScrollReveal key={cert.name} delay={i * 120}>
-                <div className="border border-white/8 rounded-[var(--radius-lg)] p-8 lg:p-10 hover:border-white/15 transition-all duration-300 hover:translate-y-[-2px]">
-                  <Icon className="w-8 h-8 text-white/80 mb-6" strokeWidth={1.5} />
-                  <h3 className="text-white text-xl font-semibold uppercase tracking-wide mb-3">
+                <div
+                  className="rounded-[var(--radius-lg)] p-8 lg:p-10 transition-all duration-300 hover:translate-y-[-2px]"
+                  style={{
+                    border: "1px solid var(--theme-border)",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.borderColor = "var(--theme-border-hover)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.borderColor = "var(--theme-border)")
+                  }
+                >
+                  <Icon
+                    className="w-8 h-8 mb-6"
+                    strokeWidth={1.5}
+                    style={{ color: "var(--theme-fg-muted)" }}
+                  />
+                  <h3
+                    className="text-xl font-semibold uppercase tracking-wide mb-3"
+                    style={{ color: "var(--theme-fg)" }}
+                  >
                     {cert.name}
                   </h3>
-                  <p className="text-white/50 leading-relaxed">
+                  <p
+                    className="leading-relaxed"
+                    style={{ color: "var(--theme-fg-muted)" }}
+                  >
                     {cert.description}
                   </p>
                 </div>

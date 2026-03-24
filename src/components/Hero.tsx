@@ -1,11 +1,12 @@
 import Image from "next/image";
 import DotPattern from "./DotPattern";
+import ThemedImage from "./ThemedImage";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background — pure black */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
+      {/* Background */}
+      <div className="absolute inset-0" style={{ backgroundColor: "var(--theme-bg)" }} />
 
       {/* Subtle dot pattern — top right */}
       <div className="absolute top-32 right-12 lg:right-24">
@@ -24,7 +25,7 @@ export default function Hero() {
                 alt="FAMIS Co."
                 width={120}
                 height={120}
-                className="invert brightness-200"
+                className="theme-logo"
               />
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-accent-red" />
@@ -34,13 +35,19 @@ export default function Hero() {
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-tight leading-[0.9] hero-title">
+            <h1
+              className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight leading-[0.9] hero-title"
+              style={{ color: "var(--theme-fg)" }}
+            >
               Ukus
               <br />
-              <span className="text-white/40">kvaliteta</span>
+              <span style={{ color: "var(--theme-fg-subtle)" }}>kvaliteta</span>
             </h1>
 
-            <p className="mt-8 text-white/50 text-lg md:text-xl max-w-lg leading-relaxed hero-subtitle">
+            <p
+              className="mt-8 text-lg md:text-xl max-w-lg leading-relaxed hero-subtitle"
+              style={{ color: "var(--theme-fg-muted)" }}
+            >
               Posvećeni proizvodnji vrhunskih mesnih proizvoda od 2001. godine.
               Tradicija, kvalitet, strast.
             </p>
@@ -48,13 +55,21 @@ export default function Hero() {
             <div className="mt-12 flex flex-col sm:flex-row gap-4 hero-buttons">
               <a
                 href="#proizvodi"
-                className="inline-flex items-center justify-center bg-white text-black px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] rounded-[var(--radius-md)] hover:bg-white/90 transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] rounded-[var(--radius-md)] transition-colors cursor-pointer"
+                style={{
+                  backgroundColor: "var(--theme-btn-bg)",
+                  color: "var(--theme-btn-fg)",
+                }}
               >
                 Naši proizvodi
               </a>
               <a
                 href="#o-nama"
-                className="inline-flex items-center justify-center border border-white/20 text-white px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] rounded-[var(--radius-md)] hover:bg-white/5 transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] rounded-[var(--radius-md)] transition-colors cursor-pointer"
+                style={{
+                  border: "1px solid var(--theme-btn-outline-border)",
+                  color: "var(--theme-fg)",
+                }}
               >
                 O nama
               </a>
@@ -64,8 +79,9 @@ export default function Hero() {
           {/* Image side — hero product shot */}
           <div className="relative flex justify-center lg:justify-end hero-image">
             <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl">
-              <Image
-                src="/products/hero-real.png"
+              <ThemedImage
+                darkSrc="/products/hero-real.png"
+                lightSrc="/products/hero-real-light.png"
                 alt="FAMIS proizvodi — kompletna linija pakovanja"
                 width={800}
                 height={1000}
@@ -73,7 +89,12 @@ export default function Hero() {
                 priority
               />
               {/* Fade bottom into background */}
-              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+              <div
+                className="absolute bottom-0 left-0 right-0 h-24"
+                style={{
+                  background: "linear-gradient(to top, var(--theme-bg), transparent)",
+                }}
+              />
             </div>
           </div>
         </div>
@@ -81,7 +102,10 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <div className="w-px h-12 bg-white/20 hero-scroll" />
+        <div
+          className="w-px h-12 hero-scroll"
+          style={{ backgroundColor: "var(--theme-fg-faint)" }}
+        />
       </div>
     </section>
   );

@@ -48,8 +48,18 @@ export default function AnimatedStat({
 
   return (
     <div ref={ref}>
-      <div className="text-2xl md:text-3xl font-bold text-white">{display}</div>
-      <div className="text-white/40 text-sm mt-1">{label}</div>
+      <div
+        className="text-2xl md:text-3xl font-bold"
+        style={{ color: "var(--theme-fg)" }}
+      >
+        {display}
+      </div>
+      <div
+        className="text-sm mt-1"
+        style={{ color: "var(--theme-fg-subtle)" }}
+      >
+        {label}
+      </div>
     </div>
   );
 }

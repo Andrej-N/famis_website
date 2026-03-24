@@ -29,21 +29,103 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Base */
+/* ========================================
+   Theme Variables
+   ======================================== */
+
+:root {
+  --theme-bg: #0a0a0a;
+  --theme-bg-alt: #070707;
+  --theme-fg: #ffffff;
+  --theme-fg-muted: rgba(255, 255, 255, 0.6);
+  --theme-fg-subtle: rgba(255, 255, 255, 0.4);
+  --theme-fg-faint: rgba(255, 255, 255, 0.2);
+  --theme-surface: #111111;
+  --theme-surface-hover: #1a1a1a;
+  --theme-surface-card: #0d0d0d;
+  --theme-border: rgba(255, 255, 255, 0.08);
+  --theme-border-hover: rgba(255, 255, 255, 0.15);
+  --theme-input-bg: rgba(255, 255, 255, 0.05);
+  --theme-input-border: rgba(255, 255, 255, 0.1);
+  --theme-input-focus: rgba(255, 255, 255, 0.25);
+  --theme-btn-bg: #ffffff;
+  --theme-btn-fg: #000000;
+  --theme-btn-hover: rgba(255, 255, 255, 0.9);
+  --theme-btn-outline-border: rgba(255, 255, 255, 0.2);
+  --theme-btn-outline-hover: rgba(255, 255, 255, 0.05);
+  --theme-divider: rgba(255, 255, 255, 0.06);
+  --theme-scrollbar-track: #0a0a0a;
+  --theme-scrollbar-thumb: #333;
+  --theme-selection-bg: rgba(255, 255, 255, 0.15);
+  --theme-selection-fg: #fff;
+  --theme-nav-bg: rgba(10, 10, 10, 0.95);
+  --theme-nav-border: rgba(255, 255, 255, 0.05);
+  --theme-logo-filter: invert(1) brightness(2);
+  --theme-dot-color: white;
+  --theme-dot-muted: rgba(255, 255, 255, 0.15);
+  --theme-filter-active-bg: rgba(255, 255, 255, 0.1);
+  --theme-filter-active-fg: #ffffff;
+  --theme-filter-active-border: rgba(255, 255, 255, 0.2);
+  --theme-filter-inactive-fg: rgba(255, 255, 255, 0.4);
+  --theme-filter-inactive-border: rgba(255, 255, 255, 0.08);
+}
+
+html.light {
+  --theme-bg: #f5f5f5;
+  --theme-bg-alt: #eeeeee;
+  --theme-fg: #111111;
+  --theme-fg-muted: rgba(0, 0, 0, 0.6);
+  --theme-fg-subtle: rgba(0, 0, 0, 0.4);
+  --theme-fg-faint: rgba(0, 0, 0, 0.15);
+  --theme-surface: #ffffff;
+  --theme-surface-hover: #f0f0f0;
+  --theme-surface-card: #f8f8f8;
+  --theme-border: rgba(0, 0, 0, 0.08);
+  --theme-border-hover: rgba(0, 0, 0, 0.15);
+  --theme-input-bg: rgba(0, 0, 0, 0.04);
+  --theme-input-border: rgba(0, 0, 0, 0.12);
+  --theme-input-focus: rgba(0, 0, 0, 0.25);
+  --theme-btn-bg: #111111;
+  --theme-btn-fg: #ffffff;
+  --theme-btn-hover: rgba(17, 17, 17, 0.85);
+  --theme-btn-outline-border: rgba(0, 0, 0, 0.2);
+  --theme-btn-outline-hover: rgba(0, 0, 0, 0.05);
+  --theme-divider: rgba(0, 0, 0, 0.06);
+  --theme-scrollbar-track: #f5f5f5;
+  --theme-scrollbar-thumb: #ccc;
+  --theme-selection-bg: rgba(0, 0, 0, 0.12);
+  --theme-selection-fg: #000;
+  --theme-nav-bg: rgba(245, 245, 245, 0.95);
+  --theme-nav-border: rgba(0, 0, 0, 0.06);
+  --theme-logo-filter: none;
+  --theme-dot-color: black;
+  --theme-dot-muted: rgba(0, 0, 0, 0.12);
+  --theme-filter-active-bg: rgba(0, 0, 0, 0.08);
+  --theme-filter-active-fg: #111111;
+  --theme-filter-active-border: rgba(0, 0, 0, 0.2);
+  --theme-filter-inactive-fg: rgba(0, 0, 0, 0.4);
+  --theme-filter-inactive-border: rgba(0, 0, 0, 0.08);
+}
+
+/* ========================================
+   Base
+   ======================================== */
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--theme-bg);
+  color: var(--theme-fg);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: var(--theme-selection-bg);
+  color: var(--theme-selection-fg);
 }
 
 /* Scrollbar */
@@ -51,10 +133,10 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: var(--theme-scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: var(--theme-scrollbar-thumb);
   border-radius: 3px;
 }
 
@@ -145,8 +227,8 @@ body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.06) 20%,
-    rgba(255, 255, 255, 0.06) 80%,
+    var(--theme-divider) 20%,
+    var(--theme-divider) 80%,
     transparent 100%
   );
 }
@@ -162,4 +244,13 @@ body {
 
 .product-card:hover {
   transform: translateY(-4px);
+}
+
+/* ========================================
+   Theme transition for logo
+   ======================================== */
+
+.theme-logo {
+  filter: var(--theme-logo-filter);
+  transition: filter 0.3s ease;
 }

@@ -30,7 +30,11 @@ const info = [
 
 export default function Contact() {
   return (
-    <section id="kontakt" className="relative py-28 lg:py-36 bg-[#070707]">
+    <section
+      id="kontakt"
+      className="relative py-28 lg:py-36"
+      style={{ backgroundColor: "var(--theme-bg-alt)" }}
+    >
       {/* Section divider */}
       <div className="absolute top-0 left-0 right-0 section-divider" />
 
@@ -39,15 +43,24 @@ export default function Contact() {
           {/* Info side */}
           <div>
             <ScrollReveal>
-              <p className="text-white/40 text-sm uppercase tracking-[0.2em] mb-4">
+              <p
+                className="text-sm uppercase tracking-[0.2em] mb-4"
+                style={{ color: "var(--theme-fg-subtle)" }}
+              >
                 Kontakt
               </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tight leading-[1.1]">
+              <h2
+                className="text-3xl md:text-5xl font-bold uppercase tracking-tight leading-[1.1]"
+                style={{ color: "var(--theme-fg)" }}
+              >
                 Stupite u
                 <br />
                 kontakt
               </h2>
-              <p className="mt-6 text-white/50 text-lg max-w-md">
+              <p
+                className="mt-6 text-lg max-w-md"
+                style={{ color: "var(--theme-fg-muted)" }}
+              >
                 Za sva pitanja u vezi naših proizvoda, saradnje ili distribucije,
                 stojimo vam na raspolaganju.
               </p>
@@ -60,16 +73,28 @@ export default function Contact() {
                   const content = (
                     <div className="flex items-start gap-4">
                       <Icon
-                        className="w-5 h-5 text-white/40 mt-0.5 shrink-0"
+                        className="w-5 h-5 mt-0.5 shrink-0"
                         strokeWidth={1.5}
+                        style={{ color: "var(--theme-fg-subtle)" }}
                       />
                       <div>
-                        <p className="text-white/40 text-xs uppercase tracking-wider mb-1">
+                        <p
+                          className="text-xs uppercase tracking-wider mb-1"
+                          style={{ color: "var(--theme-fg-subtle)" }}
+                        >
                           {item.label}
                         </p>
-                        <p className="text-white font-medium">{item.value}</p>
+                        <p
+                          className="font-medium"
+                          style={{ color: "var(--theme-fg)" }}
+                        >
+                          {item.value}
+                        </p>
                         {"detail" in item && item.detail && (
-                          <p className="text-white/40 text-sm mt-0.5">
+                          <p
+                            className="text-sm mt-0.5"
+                            style={{ color: "var(--theme-fg-subtle)" }}
+                          >
                             {item.detail}
                           </p>
                         )}
