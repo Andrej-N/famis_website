@@ -2,6 +2,8 @@ import Image from "next/image";
 import DotPattern from "./DotPattern";
 import ThemedImage from "./ThemedImage";
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -21,7 +23,7 @@ export default function Hero() {
             {/* Logo + accent dots */}
             <div className="flex items-center gap-5 mb-8 hero-logo">
               <Image
-                src="/logo.png"
+                src={`${BASE_PATH}/logo.png`}
                 alt="FAMIS Co."
                 width={120}
                 height={120}

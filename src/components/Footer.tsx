@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export default function Footer() {
   return (
     <footer
@@ -13,7 +15,7 @@ export default function Footer() {
           {/* Logo */}
           <a href="#" className="flex items-center gap-3" aria-label="FAMIS - Početna">
             <Image
-              src="/logo.png"
+              src={`${BASE_PATH}/logo.png`}
               alt="FAMIS Co. logo"
               width={36}
               height={36}

@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const links = [
   { href: "#o-nama", label: "O nama" },
   { href: "#proizvodi", label: "Proizvodi" },
@@ -46,7 +48,7 @@ export default function Navigation() {
           aria-label="FAMIS - Početna"
         >
           <Image
-            src="/logo.png"
+            src={`${BASE_PATH}/logo.png`}
             alt="FAMIS Co. logo"
             width={40}
             height={40}

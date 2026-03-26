@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useTheme } from "./ThemeProvider";
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 type ThemedImageProps = {
   darkSrc: string;
   lightSrc: string;
@@ -27,7 +29,7 @@ export default function ThemedImage({
   className = "",
 }: ThemedImageProps) {
   const { theme } = useTheme();
-  const src = theme === "light" ? lightSrc : darkSrc;
+  const src = theme === "light" ? `${BASE_PATH}${lightSrc}` : `${BASE_PATH}${darkSrc}`;
 
   return (
     <Image
