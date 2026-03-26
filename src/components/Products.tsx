@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
+import ThemedImage from "./ThemedImage";
 
 type ProductCategory = {
   id: string;
@@ -15,7 +16,17 @@ type Product = {
   weight: string;
   dots: string;
   description: string;
+  darkImg: string;
+  lightImg: string;
 };
+
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+const productImages = [
+  { dark: "/products/francuska_suva_kobasica_black.png", light: "/products/francuska_suva_kobasica_white.png" },
+  { dark: "/products/dimljena_slanina_black.png", light: "/products/dimljena_slanina_white.png" },
+  { dark: "/products/cotto_sunka_black.png", light: "/products/cotto_sunka_white.png" },
+];
 
 const categories: ProductCategory[] = [
   { id: "all", name: "Sve", color: "#ffffff" },
@@ -25,23 +36,28 @@ const categories: ProductCategory[] = [
   { id: "pastete", name: "Paštete", color: "#8d6e63" },
 ];
 
+function assignImage(index: number) {
+  const img = productImages[index % productImages.length];
+  return { darkImg: img.dark, lightImg: img.light };
+}
+
 const products: Product[] = [
-  { name: "Gril Kobasica", category: "kobasice", weight: "400g", dots: "#e53935", description: "Savršena za roštilj, sočna i začinjena" },
-  { name: "Gril Kobasica Ljuta", category: "kobasice", weight: "400g", dots: "#e53935", description: "Ljuta varijanta za ljubitelje pikantnog" },
-  { name: "Pikant Kobasica", category: "kobasice", weight: "400g", dots: "#e53935", description: "Izražen ukus paprike i začina" },
-  { name: "Krajiška Kobasica", category: "kobasice", weight: "350g", dots: "#fdd835", description: "Tradicionalni recept iz Krajine" },
-  { name: "Roštiljska Kobasica", category: "kobasice", weight: "400g", dots: "#1e88e5", description: "Klasika svakog dobrog roštilja" },
-  { name: "Rustiko Kobasica", category: "kobasice", weight: "350g", dots: "#1e88e5", description: "Rustičan ukus, gruba mlevena struktura" },
-  { name: "Viršla", category: "kobasice", weight: "300g", dots: "#f57c00", description: "Nežna, dimljena, za svaki dan" },
-  { name: "Hrenovka", category: "kobasice", weight: "300g", dots: "#9e9e9e", description: "Klasična hrenovka, omiljena kod dece" },
-  { name: "Barfalada Kobasica", category: "kobasice", weight: "350g", dots: "#e53935", description: "Bogat ukus sa blagom aromom dima" },
-  { name: "Francuska Suva Kobasica", category: "suvomesnati", weight: "250g", dots: "#1e88e5", description: "Premium suva kobasica, dugo zrenje" },
-  { name: "Francuska Suva sa Paprikom", category: "suvomesnati", weight: "250g", dots: "#1e88e5", description: "Sa dodatkom crvene paprike" },
-  { name: "Dimljena Šunka", category: "dimljeni", weight: "Per kg", dots: "#f57c00", description: "Tradicionalno dimljena na bukovom drvetu" },
-  { name: "Dimljena Slanina", category: "dimljeni", weight: "Per kg", dots: "#f57c00", description: "Hrskava, aromatična, svestrana" },
-  { name: "Cotto Šunka", category: "dimljeni", weight: "Per kg", dots: "#f57c00", description: "Kuvana šunka vrhunskog kvaliteta" },
-  { name: "Jetrena Pašteta", category: "pastete", weight: "100g", dots: "#8d6e63", description: "Kremasta, od svežih jetrica" },
-  { name: "Pašteta sa Začinima", category: "pastete", weight: "100g", dots: "#8d6e63", description: "Obogaćena mešavinom začina" },
+  { name: "Gril Kobasica", category: "kobasice", weight: "400g", dots: "#e53935", description: "Savršena za roštilj, sočna i začinjena", ...assignImage(0) },
+  { name: "Gril Kobasica Ljuta", category: "kobasice", weight: "400g", dots: "#e53935", description: "Ljuta varijanta za ljubitelje pikantnog", ...assignImage(1) },
+  { name: "Pikant Kobasica", category: "kobasice", weight: "400g", dots: "#e53935", description: "Izražen ukus paprike i začina", ...assignImage(2) },
+  { name: "Krajiška Kobasica", category: "kobasice", weight: "350g", dots: "#fdd835", description: "Tradicionalni recept iz Krajine", ...assignImage(0) },
+  { name: "Roštiljska Kobasica", category: "kobasice", weight: "400g", dots: "#1e88e5", description: "Klasika svakog dobrog roštilja", ...assignImage(1) },
+  { name: "Rustiko Kobasica", category: "kobasice", weight: "350g", dots: "#1e88e5", description: "Rustičan ukus, gruba mlevena struktura", ...assignImage(2) },
+  { name: "Viršla", category: "kobasice", weight: "300g", dots: "#f57c00", description: "Nežna, dimljena, za svaki dan", ...assignImage(0) },
+  { name: "Hrenovka", category: "kobasice", weight: "300g", dots: "#9e9e9e", description: "Klasična hrenovka, omiljena kod dece", ...assignImage(1) },
+  { name: "Barfalada Kobasica", category: "kobasice", weight: "350g", dots: "#e53935", description: "Bogat ukus sa blagom aromom dima", ...assignImage(2) },
+  { name: "Francuska Suva Kobasica", category: "suvomesnati", weight: "250g", dots: "#1e88e5", description: "Premium suva kobasica, dugo zrenje", ...assignImage(0) },
+  { name: "Francuska Suva sa Paprikom", category: "suvomesnati", weight: "250g", dots: "#1e88e5", description: "Sa dodatkom crvene paprike", ...assignImage(0) },
+  { name: "Dimljena Šunka", category: "dimljeni", weight: "Per kg", dots: "#f57c00", description: "Tradicionalno dimljena na bukovom drvetu", ...assignImage(1) },
+  { name: "Dimljena Slanina", category: "dimljeni", weight: "Per kg", dots: "#f57c00", description: "Hrskava, aromatična, svestrana", ...assignImage(1) },
+  { name: "Cotto Šunka", category: "dimljeni", weight: "Per kg", dots: "#f57c00", description: "Kuvana šunka vrhunskog kvaliteta", ...assignImage(2) },
+  { name: "Jetrena Pašteta", category: "pastete", weight: "100g", dots: "#8d6e63", description: "Kremasta, od svežih jetrica", ...assignImage(2) },
+  { name: "Pašteta sa Začinima", category: "pastete", weight: "100g", dots: "#8d6e63", description: "Obogaćena mešavinom začina", ...assignImage(0) },
 ];
 
 function ProductDots({ color, count = 4 }: { color: string; count?: number }) {
@@ -65,9 +81,9 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         className="group product-card rounded-[var(--radius-lg)] overflow-hidden"
         style={{ backgroundColor: "var(--theme-surface)" }}
       >
-        {/* Dot pattern visual */}
+        {/* Product image */}
         <div
-          className="relative aspect-[4/3] flex items-center justify-center overflow-hidden"
+          className="relative aspect-[3/4] flex items-center justify-center overflow-hidden"
           style={{ backgroundColor: "var(--theme-surface-card)" }}
         >
           {/* Accent glow on hover */}
@@ -77,18 +93,14 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
               background: `radial-gradient(circle at center, ${product.dots}15 0%, transparent 70%)`,
             }}
           />
-          <div className="grid grid-cols-5 gap-3 opacity-20 group-hover:opacity-35 transition-opacity duration-300">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-4 h-4 rounded-full transition-transform duration-300 group-hover:scale-110"
-                style={{
-                  backgroundColor: i < 8 ? product.dots : "var(--theme-dot-color)",
-                  opacity: i < 8 ? 0.8 : 0.15,
-                }}
-              />
-            ))}
-          </div>
+          <ThemedImage
+            darkSrc={product.darkImg}
+            lightSrc={product.lightImg}
+            alt={product.name}
+            width={400}
+            height={533}
+            className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+          />
         </div>
 
         {/* Info */}
